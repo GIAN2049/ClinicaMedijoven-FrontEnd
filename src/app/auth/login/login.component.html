@@ -12,14 +12,14 @@ data-sidebar-position="fixed" data-header-position="fixed">
             </h3>
       
            
-            <form [formGroup]="form" (ngSubmit)="save()">
+            <form #f="ngForm" (ngSubmit)="onLogin()" novalidate>
               <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Usuario</label>
-                <input type="email" formControlName="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input type="text" class="form-control" name="login" id="login" [(ngModel)]="loginUsuario.login" required>
               </div>
               <div class="mb-4">
                 <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                <input formControlName="password"  type="password" class="form-control" id="exampleInputPassword1">
+                <input type="password" class="form-control" name="password" id="password" [(ngModel)]="loginUsuario.password" required>
               </div>
               <div class="d-flex align-items-center justify-content-between mb-4">
                 <div class="form-check">
@@ -30,7 +30,11 @@ data-sidebar-position="fixed" data-header-position="fixed">
                 </div>
                 <a class="text-primary fw-bold" href="./index.html">¿Has olvidado tu contraseña?</a>
               </div>
-              <a routerLink=""  class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Ingresar</a>
+              <div class="mb-4">
+                <button class="btn btn-success rounded-2 btn-block"[disabled]="!f.valid">
+                  Iniciar Sesion
+                </button>
+              </div>
               <div class="d-flex align-items-center justify-content-center">
                 <!-- <p class="fs-4 mb-0 fw-bold">New to Matdash?</p> -->
                 <!-- <a class="text-primary fw-bold ms-2" href="./authentication-register.html">Create an account</a> -->

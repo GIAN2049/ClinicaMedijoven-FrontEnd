@@ -1,43 +1,77 @@
-import { Component } from '@angular/core';
-import { Validators } from '@angular/forms';
-import { FormBuilder } from '@angular/forms';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { RouterOutlet, RouterLink } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormsModule, Validators } from '@angular/forms';
+import { RouterOutlet, RouterLink, Router } from '@angular/router';
+import { LoginUsuario } from '../../security/LoginUsuario';
+import { TokenService } from '../../security/token.service';
+import { AuthService } from '../../security/auth.service';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
 
-  form:FormGroup
+  
+  isLogged = false;
+  isLoginFail = false;
+  loginUsuario: LoginUsuario = {};
+  roles: string[] = [];
+  errMsj!: string;
 
-  constructor(private fb:FormBuilder){
-
-    this.newForm()
-
+  constructor(
+    private tokenService: TokenService,
+    private authService: AuthService,
+    private router: Router,
+  ) {
+    console.log(
+      'constructor >> constructor >>> ' + this.tokenService.getToken()
+    );
   }
 
-  newForm(){
-
-    this.form = this.fb.group({
-
-      username : ['', Validators.required],
-      password : ['', Validators.required]
-
-
-    })
-    
+  ngOnInit() {
+    if (this.tokenService.getToken()) {
+      this.isLogged = true;
+      this.isLoginFail = false;
+      this.roles = this.tokenService.getAuthorities();
+    }
   }
 
-  save(){
+  onLogin(): void {
+    this.authService.login(this.loginUsuario).subscribe(
+      (data: any) => {
+        this.isLogged = true;
+        this.tokenService.setToken(data.token);
+        this.tokenService.setUserName(data.login);
+        this.tokenService.setUserNameComplete(data.nombreCompleto);
+        this.tokenService.setAuthorities(data.authorities);
+        this.tokenService.setUserId(data.idUsuario);
+        this.tokenService.setMenus(data.menus);
 
-    if(this.form.invalid) return
+        this.roles = data.authorities;
+        this.router.navigate(['dashboard']);
 
-    console.log(this.form.value);
-
-  }
+        console.log('onLogin() >> token >>> ' + this.tokenService.getToken());
+        console.log('onLogin() >> setUserName >>> ' + this.tokenService.getUserName());
+        console.log('onLogin() >> setUserNameComplete >>> ' + this.tokenService.getUserNameComplete());
+        console.log('onLogin() >> idUsuario >>> ' + this.tokenService.getUserId());
+        console.log('onLogin() >> roles >>> ' + this.tokenService.getAuthorities());
+        console.log('onLogin() >> Menus >>> INICIO >> ');
+        this.tokenService.getMenus().forEach((obj) => {
+          console.log(' >> onLogin() >> ' + obj.nombre);
+        });
+        console.log('onLogin() >> Menus >>> FIN >> ');
+      },
+      (err: any) => {
+        this.isLogged = false;
+        this.errMsj = err.message;
+        console.log(err);
+        if (err.status == 401) {
+        }
+      }
+    );
+  }  
 
 }

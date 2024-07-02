@@ -11,25 +11,25 @@ export class CategoryService {
 
   getCategory(){
 
-    return this.http.get<any>(`${environment.url}apiClinicaV1/Categoria/listar`)
+    return this.http.get<any>(`${environment.url}/Categoria/listar`)
 
   }
 
   newCategory(category:any){
 
-    return this.http.post<any>(`${environment.url}apiClinicaV1/Categoria/registrar`, category)
+    return this.http.post<any>(`${environment.url}/Categoria/registrar`, category)
 
   }
 
   updateCategory(category:any){
 
-    return this.http.put(`${environment.url}apiClinicaV1/Categoria/actualizar`, category)
+    return this.http.put(`${environment.url}/Categoria/actualizar`, category)
 
   }
 
   deleteCategory(id:number){
 
-    return this.http.delete(`${environment.url}apiClinicaV1/Categoria/eliminar/${id}`)
+    return this.http.delete(`${environment.url}/Categoria/eliminar/${id}`)
 
   }
 }

@@ -21,11 +21,17 @@
                     </a>
                 </li>
 
-                <li class="sidebar-item">
-                    <a class="sidebar-link" routerLink="categoria" routerLinkActive="active" aria-expanded="false">
-                        <span class="hide-menu">Categoria</span>
-                    </a>
-                </li>
+               
+
+                @if (isLogged) {
+                    @for (menu of menus; track $index) {
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" routerLink="{{menu.link}}" routerLinkActive="active" aria-expanded="false">
+                                <span class="hide-menu">{{menu.nombre}}</span>
+                            </a>
+                        </li>
+                    }
+                }
             
                 <li>
                     <span class="sidebar-divider lg"></span>
