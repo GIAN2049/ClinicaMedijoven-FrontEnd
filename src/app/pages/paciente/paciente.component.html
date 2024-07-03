@@ -1,1 +1,36 @@
-<p>paciente works!</p>
+<div class="d-flex justify-content-between">
+    <h5 class="card-title fw-semibold mb-4">Categoria</h5>
+    <div>
+        <button type="button" (click)="addPacientes()" class="btn btn-primary">Nuevo</button>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th style="font-size: 12px;">#</th>
+            <th style="font-size: 12px;">NOMBRE</th>
+            <th style="font-size: 12px;">APELLIDOS</th>
+            <th style="font-size: 12px;">DNI</th>
+            <th style="font-size: 12px;">CORREO</th>
+            <th style="font-size: 12px;">T.SANGRE</th>
+            <th class="text-center">ACCIONES</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(item of pacientes;track item){
+        <tr>
+            <td>{{item.id}}</td>
+            <td>{{item.usuario.nombre}}</td>
+            <td>{{item.usuario.apellidos}}</td>
+            <td>{{item.usuario.dni}}</td>
+            <td>{{item.usuario.correo}}</td>
+            <td>{{item.tipoSangre}}</td>
+            <td class="text-center">
+                <button (click)="updatePacientes(item)" type="button" class="btn btn-primary btn-sm">Editar</button>
+                <button (click)="deletePacientes(item)" type="button" class="btn btn-danger btn-sm mx-2">Eliminar</button>
+            </td>
+        </tr>
+        }
+
+    </tbody>
+</table>
