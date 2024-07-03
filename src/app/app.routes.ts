@@ -33,10 +33,16 @@ export  const routes: Routes = [
         loadComponent: () => import('./pages/cita/cita.component')
       },
       {
+        path: 'usuario',
+        title: 'Usuario',
+        loadComponent: () => import('./pages/usuario/usuario.component')
+      },
+      {
         path: 'medico',
         title: 'Medico',
         loadComponent: () => import('./pages/medico/medico.component')
       }
+      
     ]
   }
 
