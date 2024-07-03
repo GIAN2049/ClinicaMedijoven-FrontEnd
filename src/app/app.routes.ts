@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { NopagefoundComponent } from './pages/nopagefound/nopagefound.component';
 
-export const routes: Routes = [
+export  const routes: Routes = [
 
 
   {
@@ -21,6 +21,11 @@ export const routes: Routes = [
         path: 'categoria',
         title: 'categoria',
         loadComponent: () => import('./pages/categoria/categoria.component')
+      },
+      {
+        path: 'especialidad',
+        title: 'especialidad',
+        loadComponent: () => import('./pages/especialidad/especialidad.component')
       }
     ]
   }
