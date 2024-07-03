@@ -1,0 +1,82 @@
+<form>
+
+    <div mat-dialog-content>
+        <div class="row">
+            
+            <div class="col-md-6">
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>NOMBRES</mat-label>
+                    <input [(ngModel)]="objMedico.usuario.nombre" name="nombre" type="text" matInput>
+                </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>APELLIDOS</mat-label>
+                    <input [(ngModel)]="objMedico.usuario.apellidos" name="apellidos" type="text" matInput>
+                </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>DNI</mat-label>
+                    <input [(ngModel)]="objMedico.usuario.dni" name="dni" type="text" matInput>
+                </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>CORREO</mat-label>
+                    <input [(ngModel)]="objMedico.usuario.correo" name="correo" type="text" matInput>
+                </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>NUMERO DE TELEFONO</mat-label>
+                    <input [(ngModel)]="objMedico.usuario.telefono" name="telefono" type="text" matInput>
+                </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>USERNAME</mat-label>
+                    <input [(ngModel)]="objMedico.usuario.login" name="login" type="text" matInput>
+                </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>PASSWORD</mat-label>
+                    <input [(ngModel)]="objMedico.usuario.password" name="password" type="text" matInput>
+                </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>SEXO</mat-label>
+                    <input [(ngModel)]="objMedico.usuario.sexo" name="sexo" type="text" matInput>
+                </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>ESPECIALIDAD</mat-label>
+                    
+
+                    <mat-select [(ngModel)] ="objMedico.especialidad!.id" name="especialidad">
+                        <mat-option value="-1"> [Seleccione] </mat-option>
+                        <mat-option *ngFor="let x of lstEspecialidad" [value]="x.id">
+                                    {{x.nombre}}
+                        </mat-option> 
+                    </mat-select> 
+                </mat-form-field>
+            </div>
+
+        </div>
+    </div>
+    <div mat-dialog-actions>
+        <button type="button" color="warn" [mat-dialog-close]="false" mat-button>Cancelar</button>
+        <button type="submit" color="primary" mat-button (click)="actualizar()">Guardar</button>
+    </div>
+</form>
