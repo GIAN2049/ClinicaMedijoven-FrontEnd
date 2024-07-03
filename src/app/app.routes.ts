@@ -42,7 +42,7 @@ export  const routes: Routes = [
         title: 'Medico',
         loadComponent: () => import('./pages/medico/medico.component')
       }
-      
+
     ]
   }
 
