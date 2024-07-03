@@ -37,6 +37,12 @@ export  const routes: Routes = [
         title: 'Medico',
         loadComponent: () => import('./pages/medico/medico.component')
       }
+      ,
+      {
+        path: 'paciente',
+        title: 'paciente',
+        loadComponent: () => import('./pages/paciente/paciente.component')
+      }
     ]
   }
 
