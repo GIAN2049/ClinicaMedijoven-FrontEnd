@@ -23,11 +23,11 @@ export default class UsuarioComponent {
   }
 
   ngOnInit(): void {
-    this.getUsuario()
+    this.getUsuarios()
   }
 
 
-  getUsuario(){
+  getUsuarios(){
     this.usuarioService.getUsuarios().subscribe(data =>{
       console.log(data);
       this.usuarios=data.object
@@ -62,9 +62,6 @@ export default class UsuarioComponent {
       this.getUsuarios()
     })
 
-  }
-  getUsuarios() {
-    throw new Error('Method not implemented.');
   }
 
   deleteUsuarios(usuario:any){

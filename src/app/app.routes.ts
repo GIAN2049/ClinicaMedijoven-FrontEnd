@@ -46,7 +46,23 @@ export  const routes: Routes = [
       {
         path: 'paciente',
         title: 'paciente',
-        loadComponent: () => import('./pages/medico/medico.component')
+        loadComponent: () => import('./pages/paciente/paciente.component')
+      }
+      ,
+      {
+        path: 'medicamento',
+        title: 'medicamento',
+        loadComponent: () => import('./pages/medicamento/medicamento.component')
+      },
+      {
+        path: 'historia-clinica',
+        title: 'Historia Clinica',
+        loadComponent: () => import('./pages/historia-clinica/historia-clinica.component')
+      },
+      {
+        path: 'receta-medica',
+        title: 'Receta Medica',
+        loadComponent: () => import('./pages/receta/receta.component')
       }
 
     ]

@@ -87,6 +87,7 @@ export class AddMedicoComponent {
 
 
   registra() {
+    console.log('Datos de la receta a registrar:', this.objMedico);
     this.medicoService.registrarMedico(this.objMedico).subscribe(
       (x) => {
         this.snackbar.open('Medico registrado', 'cerrar');

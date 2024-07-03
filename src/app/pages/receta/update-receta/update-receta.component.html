@@ -1,0 +1,86 @@
+<form>
+
+    <div mat-dialog-content>
+        <div class="row">
+            
+            <div class="col-md-6">
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>MEDICO</mat-label>
+                    <mat-select [(ngModel)]="objReceta.medico!.id" name="paciente">
+                        <mat-option value="-1"> [Seleccione] </mat-option>
+                        <mat-option *ngFor="let x of lstMedico" [value]="x.id">
+                            {{x.usuario.nombre}}
+                        </mat-option> 
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>PACIENTE</mat-label>
+                    <mat-select [(ngModel)]="objReceta.paciente!.id" name="paciente">
+                        <mat-option value="-1"> [Seleccione] </mat-option>
+                        <mat-option *ngFor="let x of lslPaciente" [value]="x.id">
+                            {{x.usuario.nombre}}
+                        </mat-option> 
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>ESPECIALIAD</mat-label>
+                    <mat-select [(ngModel)]="objReceta.especialidad!.id" name="especialidad">
+                        <mat-option value="-1"> [Seleccione] </mat-option>
+                        <mat-option *ngFor="let x of lstEspecialidad" [value]="x.id">
+                            {{x.nombre}}
+                        </mat-option> 
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>CATEGORIA</mat-label>
+                    <mat-select [(ngModel)]="objReceta.categoria!.id" name="categoria">
+                        <mat-option value="-1"> [Seleccione] </mat-option>
+                        <mat-option *ngFor="let x of lslCategoria" [value]="x.id">
+                            {{x.nombre}}
+                        </mat-option> 
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>MEDICAMENTO</mat-label>
+                    <mat-select [(ngModel)]="objReceta.medicamento!.id" name="medicamento">
+                        <mat-option value="-1"> [Seleccione] </mat-option>
+                        <mat-option *ngFor="let x of lslMedicamento" [value]="x.id">
+                            {{x.nombre}}
+                        </mat-option> 
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>FECHA REGISTRO</mat-label>
+                    <input [(ngModel)]="objReceta.fechaRegistro" name="fechaRegistro" type="date" matInput>
+                </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>DETALLES</mat-label>
+                    <input [(ngModel)]="objReceta.detalles" name="detalles" type="text" matInput>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+
+    <div mat-dialog-actions>
+        <button type="button" color="warn" [mat-dialog-close]="false" mat-button>Cancelar</button>
+        <button type="submit" color="primary" mat-button (click)="actualizar()">Guardar</button>
+    </div>
+</form>

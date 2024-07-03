@@ -1,0 +1,52 @@
+<form>
+
+    <div mat-dialog-content>
+        <div class="row">
+            
+            <div class="col-md-6">
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>PACIENTE</mat-label>
+                    <mat-select [(ngModel)]="objHClinica.paciente!.id" name="paciente">
+                        <mat-option value="-1"> [Seleccione] </mat-option>
+                        @for (item of lslPaciente; track $index) {
+                            <mat-option value="{{item.id}}"> {{item.usuario.nombre}} </mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>FECHA REGISTRO</mat-label>
+                    <input [(ngModel)]="objHClinica.fechaRegistro" name="fechaRegistro" type="date" matInput>
+                </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>DIAGNOSTICO</mat-label>
+                    <input [(ngModel)]="objHClinica.diagnostico" name="diagnostico" type="text" matInput>
+                </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>TRATAMIENTOS</mat-label>
+                    <input [(ngModel)]="objHClinica.tratamientos" name="tratamientos" type="text" matInput>
+                </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>RESULTADOS</mat-label>
+                    <input [(ngModel)]="objHClinica.resultadosPruebas" name="resutaldos" type="text" matInput>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+
+    <div mat-dialog-actions>
+        <button type="button" color="warn" [mat-dialog-close]="false" mat-button>Cancelar</button>
+        <button type="submit" color="primary" mat-button (click)="registra()">Guardar</button>
+    </div>
+</form>

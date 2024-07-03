@@ -1,1 +1,36 @@
-<p>historia-clinica works!</p>
+<div class="d-flex justify-content-between">
+    <h5 class="card-title fw-semibold mb-4">HISTORIAS CLINICAS</h5>
+    <div>
+        <button type="button" (click)="addHistoriaClinica()" class="btn btn-primary">Nuevo</button>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>PACIENTE</th>
+            <th>HORA</th>
+            <th>DIAGNOSTICO</th>
+            <th>TRATAMIENTOS</th>
+            <th>RESULTADOS</th>
+            <th class="text-center">ACCIONES</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(item of hclinicas;track item){
+        <tr>
+            <td>{{item.id}}</td>
+            <td>{{item.paciente.usuario.nombre}}</td>
+            <td>{{item.fechaRegistro}}</td>
+            <td>{{item.diagnostico}}</td>
+            <td>{{item.tratamientos}}</td>
+            <td>{{item.resultadosPruebas}}</td>
+            <td class="text-center">
+                <button (click)="updateHistoriaClinica(item)" type="button" class="btn btn-primary btn-sm">Editar</button>
+                <button (click)="deleteHistoriaClinica(item)" type="button" class="btn btn-danger btn-sm mx-2">Eliminar</button>
+            </td>
+        </tr>
+        }
+
+    </tbody>
+</table>
