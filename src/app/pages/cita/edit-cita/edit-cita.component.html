@@ -1,0 +1,58 @@
+<h1 mat-dialog-title>Editar Cita</h1>
+
+
+
+    <form [formGroup]="form" (ngSubmit)="save()">
+
+        <div mat-dialog-content>
+            <div class="row">
+                
+                <div class="col-6">
+          
+                        <label>Fecha</label>
+                        <input class="form-control" formControlName="fechaCita" type="date" >
+                  
+                </div>
+                <div class="col-6">
+                    <label>Hora</label>
+                    <input class="form-control" formControlName="hora" type="time" >
+                </div>
+               
+
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-6">
+                    <mat-form-field class="w-100" appearance="outline">
+                        <mat-label>Medico</mat-label>
+                        <mat-select formControlName="idMedico">
+                            @for(item of medicos;track item){
+                                <mat-option [value]="item.id">{{item.usuario.nombre}}</mat-option>
+                            }
+                          
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-6">
+                    <mat-form-field class="w-100" appearance="outline">
+                        <mat-label>Paciente</mat-label>
+                        <mat-select formControlName="idPaciente">
+                            @for(item of pacientes;track item){
+                                <mat-option [value]="item.id">{{item.tipoSangre}} {{item.usuario.nombre}} {{item.usuario.apellido}}</mat-option>
+                            }
+                          
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+        </div>
+
+        <div mat-dialog-actions>
+
+            <button type="button" color="warn" [mat-dialog-close]="false" mat-button>cancelar</button>
+            <button type="submit" color="primary" mat-button>guardar</button>
+
+        </div>
+    </form>
+

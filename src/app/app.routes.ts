@@ -26,6 +26,11 @@ export  const routes: Routes = [
         path: 'especialidad',
         title: 'especialidad',
         loadComponent: () => import('./pages/especialidad/especialidad.component')
+      },
+      {
+        path: 'cita',
+        title: 'cita',
+        loadComponent: () => import('./pages/cita/cita.component')
       }
     ]
   }
