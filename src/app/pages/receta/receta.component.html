@@ -1,1 +1,36 @@
-<p>receta works!</p>
+<div class="d-flex justify-content-between">
+    <h5 class="card-title fw-semibold mb-4">RECETAS MEDICAS</h5>
+    <div>
+        <button type="button" (click)="addRecetaService()" class="btn btn-primary">Nuevo</button>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>MEDICO</th>
+            <th>PACIENTE</th>
+            <th>ESPECIALIDAD</th>
+            <th>FECHA REGISTRO</th>
+            <th>DETALLES</th>
+            <th class="text-center">ACCIONES</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(item of recetas;track item){
+        <tr>
+            <td>{{item.id}}</td>
+            <td>{{item.medico.usuario.nombre}}</td>
+            <td>{{item.paciente.usuario.nombre}}</td>
+            <td>{{item.especialidad.nombre}}</td>
+            <td>{{item.fechaRegistro}}</td>
+            <td>{{item.detalles}}</td>
+            <td class="text-center">
+                <button (click)="updateRecetaService(item)" type="button" class="btn btn-primary btn-sm">Editar</button>
+                <button (click)="deleteRecetaService(item)" type="button" class="btn btn-danger btn-sm mx-2">Eliminar</button>
+            </td>
+        </tr>
+        }
+
+    </tbody>
+</table>
