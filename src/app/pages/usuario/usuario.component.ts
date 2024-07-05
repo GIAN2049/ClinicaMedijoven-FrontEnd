@@ -6,11 +6,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { AddUsuarioComponent } from './add-usuario/add-usuario.component';
 import { UpdateUsuarioComponent } from './update-usuario/update-usuario.component';
 import { Usuario } from '../../Model/usuario';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-usuario',
   standalone: true,
-  imports: [RouterOutlet, RouterLink],
+  imports: [RouterOutlet, RouterLink, CommonModule],
   templateUrl: './usuario.component.html',
   styleUrl: './usuario.component.css'
 })
@@ -68,9 +69,13 @@ export default class UsuarioComponent {
     this.usuarioService.deleteUsuarios(usuario.id).subscribe({
       next : result => {
         this.getUsuarios()
-        this.snackbar.open('Usuario eliminado','cerrar')
+        this.snackbar.open('Usuario eliminado','cerrar', {
+          duration : 300
+        })
       }, error : error => {
-      this.snackbar.open('Error','cerrar')
+      this.snackbar.open('Error','cerrar', {
+        duration : 300
+      })
       }
     })
 

@@ -74,13 +74,18 @@ export class UpdateMedicamentoComponent {
 
   actualizar() {
     this.medicamentoService.updateMedicamento(this.objMedicamento).subscribe(
-      (x) => {
-        this.snackbar.open('Medico actualizado', 'cerrar');
-        console.log("MENSAJE: " + x);
-      },
-      (error) => {
-        this.errors.push(error.error.mensaje);
+     {
+      next : x => {
+        this.snackbar.open('MEDICAMENTO ACTUALIZADO', 'cerrar',{
+          duration : 300
+        })
+        this.dialogRef.close(true)
+      }, error : err => {
+        this.snackbar.open('ERROR AL ACTUALIZAR MEDICAMENTO', 'cerrar', {
+          duration : 300
+        })
       }
+     }
     );
   }
 }

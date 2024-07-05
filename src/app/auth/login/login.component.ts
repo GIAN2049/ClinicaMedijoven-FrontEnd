@@ -5,6 +5,7 @@ import { LoginUsuario } from '../../security/LoginUsuario';
 import { TokenService } from '../../security/token.service';
 import { AuthService } from '../../security/auth.service';
 import { CommonModule } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -25,6 +26,7 @@ export class LoginComponent implements OnInit{
     private tokenService: TokenService,
     private authService: AuthService,
     private router: Router,
+    private _snackbar : MatSnackBar
   ) {
     console.log(
       'constructor >> constructor >>> ' + this.tokenService.getToken()
@@ -69,6 +71,7 @@ export class LoginComponent implements OnInit{
         this.errMsj = err.message;
         console.log(err);
         if (err.status == 401) {
+          this._snackbar.open('USUARIO NO AUTORIZADO', 'cerrar')
         }
       }
     );

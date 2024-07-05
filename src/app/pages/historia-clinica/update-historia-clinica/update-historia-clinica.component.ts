@@ -77,14 +77,18 @@ export class UpdateHistoriaClinicaComponent {
 
   actualizar() {
     console.log('Datos de la historia clinica a registrar:', this.objHClinica);
-    this.hclinicaService.actualizar(this.objHClinica).subscribe(
-      (x) => {
-        this.snackbar.open('Historia Clinica actualizada', 'cerrar');
-        console.log('MENSAJE: ' + x);
-      },
-      (error) => {
-        this.errors.push(error.error.mensaje);
+    this.hclinicaService.actualizar(this.objHClinica).subscribe({
+      next : x => {
+        this.snackbar.open('HISTORIA CLINICA ACTUALIZADA', 'cerrar',{
+          duration : 300
+        })
+        this.dialogRef.close(true)
+      }, error : err => {
+        this.snackbar.open('ERROR AL ACTUALIZAR', 'cerrar',{
+          duration : 300
+        })
+        this.dialogRef.close(true)
       }
-    );
+    });
   }
 }

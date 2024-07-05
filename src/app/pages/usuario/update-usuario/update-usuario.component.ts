@@ -12,6 +12,8 @@ import { CommonModule } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
 import { UsuarioUpdate } from '../../../Model/UsuarioUpdate';
 import { UsuarioService } from '../../../services/usuario.service';
+import { Usuario } from '../../../Model/usuario';
+import { Rol } from '../../../Model/Rol';
 
 
 @Component({
@@ -24,28 +26,31 @@ import { UsuarioService } from '../../../services/usuario.service';
     MatInputModule,
     FormsModule,
     CommonModule,
-    MatSnackBarModule,  
+    MatSnackBarModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
   ],
   templateUrl: './update-usuario.component.html',
-  styleUrl: './update-usuario.component.css'
+  styleUrl: './update-usuario.component.css',
 })
 export class UpdateUsuarioComponent {
-  errors:string[]=[]
+  errors: string[] = [];
   objUsuario: UsuarioUpdate = {
-
-      nombre: '',
-      apellidos: '',
-      dni: '',
-      correo: '',
-      telefono: '',
-      login: '',
-      password: '',
-      sexo: '',
-  
+    nombre: '',
+    apellidos: '',
+    dni: '',
+    correo: '',
+    telefono: '',
+    login: '',
+    password: '',
+    roles: [],
+    sexo: ''
   };
-  
+
+  objUsuarioToken : Usuario = {}
+  selectedRolId: number = -1;
+  lstRoles: Rol[] = [];
+
   constructor(
     private dialogRef: MatDialogRef<UpdateUsuarioComponent>,
     private usuarioService: UsuarioService,
@@ -55,19 +60,42 @@ export class UpdateUsuarioComponent {
     @Inject(MAT_DIALOG_DATA) public data
   ) {
     this.objUsuario = data;
-    this.objUsuario.id = tokenService.getUserId();
+    
+    if (this.objUsuario.roles.length > 0) {
+      this.selectedRolId = this.objUsuario.roles[0].id!;
+    }
+    
+    this.objUsuarioToken.id = tokenService.getUserId();
+  }
+
+  ngOnInit(): void {
+    this.getRoles();
+  }
+
+  getRoles() {
+    this.usuarioService.getRoles().subscribe((data) => {
+      console.log(data);
+      this.lstRoles = data.object;
+    });
   }
 
   actualizar() {
+    if (this.selectedRolId !== -1) {
+      this.objUsuario.roles = [{ id: this.selectedRolId }]; // Set the selected role
+    } else {
+      this.objUsuario.roles = [];
+    }
     
-    this.usuarioService.updateUsuarios(this.objUsuario).subscribe(
-      (x) => {
-        this.snackbar.open('Usuario actualizado', 'cerrar');
-        console.log("MENSAJE: " + x);
-      },
-      (error) => {
-        this.errors.push(error.error.mensaje);
+    this.usuarioService.updateUsuarios(this.objUsuario).subscribe({
+      next : x => {
+        this.snackbar.open('Usuario actualizado', 'cerrar', {
+          duration : 300
+        });
+        this.dialogRef.close(true)
+        console.log('MENSAJE: ' + x);      
+      }, error : errors => {
+        this.errors.push(errors.error.mensaje);
       }
-    );
+    });
   }
 }

@@ -1,4 +1,5 @@
 import { Especialidad } from "./Especialidad";
+import { Rol } from "./Rol";
 import { Usuario } from "./usuario";
 
 export interface UsuarioUpdate{
@@ -10,5 +11,6 @@ export interface UsuarioUpdate{
 	telefono? : string
 	login? : string
 	password? : string
+	roles ? : Rol[]
 	sexo? : string
 }

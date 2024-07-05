@@ -54,6 +54,16 @@
 
             <div class="col-md-6">
                 <mat-form-field class="w-100" appearance="outline">
+                  <mat-label>ROL</mat-label>
+                  <mat-select [(ngModel)]="selectedRolId" name="roles">
+                    <mat-option value="-1">[Seleccione]</mat-option>
+                    <mat-option *ngFor="let x of lstRoles" [value]="x.id">{{x.rol}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+            <div class="col-md-6">
+                <mat-form-field class="w-100" appearance="outline">
                     <mat-label>SEXO</mat-label>
                     <input [(ngModel)]="objUsuario.sexo" name="sexo" type="text" matInput>
                 </mat-form-field>

@@ -49,11 +49,15 @@ export class NewCategoryComponent {
 
       next : result => {
 
-          this.snackbar.open('Categoria registrado','cerrar')
+          this.snackbar.open('Categoria registrado','cerrar', {
+            duration : 300
+          })
           this.dialogRef.close(true)
       }, error : error => {
 
-        this.snackbar.open('Error','cerrar')
+        this.snackbar.open('Error','cerrar', {
+          duration : 300
+        })
      
 
       }

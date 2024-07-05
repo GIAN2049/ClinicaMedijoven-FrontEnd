@@ -11,9 +11,9 @@ import { MedicoService } from '../../../services/medico.service';
 import { EspecialidadService } from '../../../services/especialidad.service';
 import { TokenService } from '../../../security/token.service';
 import { Especialidad } from '../../../Model/Especialidad';
-import { Usuario } from '../../../Model/usuario';
 import { Medico } from '../../../Model/Medico';
 import { UsuarioService } from '../../../services/usuario.service';
+import { Usuario } from '../../../Model/usuario';
 
 @Component({
   selector: 'app-add-usuario',
@@ -69,12 +69,16 @@ export class AddUsuarioComponent {
 
   registra() {
     this.usuarioService.addUsuarios(this.objUsuario).subscribe(
-      (x) => {
-        this.snackbar.open('Usuario registrado', 'cerrar');
-        console.log('MENSAJE: ' + x.mensaje);
-      },
-      (error) => {
-        this.errors.push(error.error.mensaje);
+      {
+        next : x => {
+          this.snackbar.open('USUARIO REGISTRADO', 'cerrar', {
+            duration: 300
+          })
+        }, error : err => {
+          this.snackbar.open('ERROR AL REGISTRAR MEDICO', 'cerrar', {
+            duration: 300
+          })
+        }
       }
     );
   }

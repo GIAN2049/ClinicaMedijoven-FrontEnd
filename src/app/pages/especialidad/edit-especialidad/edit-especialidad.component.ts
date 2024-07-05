@@ -66,12 +66,16 @@ export class EditEspecialidadComponent implements OnInit {
 
       next : result => {
 
-          this.snackbar.open('Especialidad actualizado','cerrar')
+          this.snackbar.open('Especialidad actualizado','cerrar', {
+            duration : 300
+          })
           this.dialogRef.close(true)
 
       }, error : error => {
 
-        this.snackbar.open('Error','cerrar')
+        this.snackbar.open('Error','cerrar', {
+          duration : 300
+        })
      
 
       }

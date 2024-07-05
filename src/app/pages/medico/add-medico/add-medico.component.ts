@@ -87,15 +87,18 @@ export class AddMedicoComponent {
 
 
   registra() {
-    console.log('Datos de la receta a registrar:', this.objMedico);
-    this.medicoService.registrarMedico(this.objMedico).subscribe(
-      (x) => {
-        this.snackbar.open('Medico registrado', 'cerrar');
-        console.log('MENSAJE: ' + x.mensaje);
-      },
-      (error) => {
-        this.errors.push(error.error.mensaje);
+    this.medicoService.registrarMedico(this.objMedico).subscribe({
+      next : result => {
+        this.snackbar.open('MEDICO REGISTRADO', 'cerrar', {
+          duration : 300
+        })
+        this.dialogRef.close(true)
+      }, error : err => {
+        this.snackbar.open('ERROR AL REGISTRAR MEDICO', 'cerrar', {
+          duration : 300
+        })
+        this.errors.push(err.mensaje)
       }
-    );
+    })
   }
 }

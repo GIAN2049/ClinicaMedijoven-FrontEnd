@@ -1,8 +1,8 @@
 <div class="d-flex justify-content-between">
     <h5 class="card-title fw-semibold mb-4">HISTORIAS CLINICAS</h5>
-    <div>
+    <div *ngIf="isNotPaciente()">
         <button type="button" (click)="addHistoriaClinica()" class="btn btn-primary">Nuevo</button>
-    </div>
+    </div>  
 </div>
 <table class="table">
     <thead>

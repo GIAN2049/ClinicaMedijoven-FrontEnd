@@ -76,12 +76,18 @@ export class AddHistoriaClinicaComponent {
   registra() {
     console.log('Datos de la historia clinica a registrar:', this.objHClinica);
     this.hclinicaService.registrar(this.objHClinica).subscribe(
-      (x) => {
-        this.snackbar.open('Historia Clinica registrada', 'cerrar');
-        console.log('MENSAJE: ' + x.mensaje);
-      },
-      (error) => {
-        this.errors.push(error.error.mensaje);
+      {
+        next : x => {
+          this.snackbar.open('HISTORIA CLINICA REGISTRADA', 'cerrar', {
+            duration : 300
+          })
+          this.dialogRef.close(true)
+        }, error : err => {
+          this.snackbar.open('error al registrar', 'cerrar', {
+            duration : 300
+          })
+          this.dialogRef.close(true)
+        }   
       }
     );
   }
