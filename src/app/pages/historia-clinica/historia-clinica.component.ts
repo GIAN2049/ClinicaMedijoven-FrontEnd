@@ -6,11 +6,15 @@ import { HistoriaClinicaService } from '../../services/HistoriaClinica.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AddHistoriaClinicaComponent } from './add-historia-clinica/add-historia-clinica.component';
 import { UpdateHistoriaClinicaComponent } from './update-historia-clinica/update-historia-clinica.component';
+import { UsuarioService } from '../../services/usuario.service';
+import { TokenService } from '../../security/token.service';
+import { Rol } from '../../Model/Rol';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-historia-clinica',
   standalone: true,
-  imports: [RouterOutlet,RouterLink],
+  imports: [RouterOutlet,RouterLink, CommonModule],
   templateUrl: './historia-clinica.component.html',
   styleUrl: './historia-clinica.component.css'
 })
@@ -18,12 +22,18 @@ export default class HistoriaClinicaComponent {
   readonly dialog = inject(MatDialog);
 
   hclinicas : HistoriaClininca[]=[]
+  roles : Rol[]=[]
+  idUsuarioLog : number
 
-  constructor(private hclinicaService : HistoriaClinicaService, private snackbar:MatSnackBar ){
+  constructor(private hclinicaService : HistoriaClinicaService, private snackbar:MatSnackBar, 
+    private tokenService: TokenService, private usuarioService : UsuarioService
+  ){
   }
 
   ngOnInit(): void {
     this.getMedicos()
+    this.getRolesUsuarioId();
+    this.isNotPaciente();
   }
 
 
@@ -34,6 +44,14 @@ export default class HistoriaClinicaComponent {
     })
   }
 
+  getRolesUsuarioId(){
+    this.usuarioService.getRolesIdUsuario(this.idUsuarioLog).subscribe(
+      data => {
+        console.log(data)
+        this.roles = data.object
+      }
+    )
+  }
   
   addHistoriaClinica(){
 
@@ -73,6 +91,16 @@ export default class HistoriaClinicaComponent {
       this.snackbar.open('Error','cerrar')
       }
     })
+  }
 
+  isNotPaciente(): boolean {
+    const isNotPaciente = this.roles.some(role => {
+      if (role.rol !== 'PACIENTE') {
+        console.log(role.rol);
+        return true;
+      }
+      return false;
+    });
+    return isNotPaciente;
   }
 }

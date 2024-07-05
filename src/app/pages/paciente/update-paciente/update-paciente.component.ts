@@ -41,6 +41,7 @@ export class UpdatePacienteComponent {
       telefono : '',
       login : '',
       password : '',
+      sexo : ''
     },
     tipoSangre:'',
     disponible:true    
@@ -62,12 +63,17 @@ export class UpdatePacienteComponent {
 
   actualizar() {
     this.pacienteService.actualizarPacientes(this.objPaciente).subscribe(
-      (x) => {
-        this.snackbar.open('Paciente actualizado', 'cerrar');
-        console.log("MENSAJE: " + x);
-      },
-      (error) => {
-        this.errors.push(error.error.mensaje);
+      {
+        next : x => {
+          this.snackbar.open('PACIENTE ACTUALIZADO', 'cerrar', {
+            duration: 300
+          })
+          this.dialogRef.close(true)
+        }, error : err => {
+          this.snackbar.open('ERROR AL ACTUALIZAR PACIENTE', 'cerrar', {
+            duration: 300
+          })
+        }
       }
     );
   }

@@ -96,12 +96,10 @@ export default class CategoriaComponent implements OnInit {
       next : result => {
 
         this.getData()
-        this.snackbar.open('Categoria eliminado','cerrar')
-
-      
-
+        this.snackbar.open('Categoria eliminado','cerrar', {
+          duration : 300
+        })
       }, error : error => {
-
 
       this.snackbar.open('Error','cerrar')
       }

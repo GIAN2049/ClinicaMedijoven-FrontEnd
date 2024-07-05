@@ -8,6 +8,14 @@ import { environment } from '../../environments/environment.development';
 export class UsuarioService {
   constructor(private http: HttpClient) {}
 
+  getRoles(){
+    return this.http.get<any>(`${environment.url}/usuarios/roles`);
+  }
+
+  getRolesIdUsuario(idUsuario : number){
+    return this.http.get<any>(`${environment.url}/usuarios/roles/${idUsuario}`);
+  }
+
   getUsuarios() {
     return this.http.get<any>(`${environment.url}/usuarios`);
   }

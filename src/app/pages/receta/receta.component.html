@@ -1,8 +1,9 @@
 <div class="d-flex justify-content-between">
     <h5 class="card-title fw-semibold mb-4">RECETAS MEDICAS</h5>
-    <div>
+
+    <div *ngIf="isNotPaciente()">
         <button type="button" (click)="addRecetaService()" class="btn btn-primary">Nuevo</button>
-    </div>
+    </div>  
 </div>
 <table class="table">
     <thead>

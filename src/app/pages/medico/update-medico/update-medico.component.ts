@@ -79,17 +79,20 @@ export class UpdateMedicoComponent {
   }
 
   actualizar() {
-    console.log(">>>>>>>>>> ID MEDICO: " + this.objMedico.id);
-    console.log(">>>>>>>>>> ID USUARIO: " + this.objMedico.usuario.id);
-  
-    this.medicoService.actualizarMedico(this.objMedico).subscribe(
-      (x) => {
-        this.snackbar.open('Medico actualizado', 'cerrar');
-        console.log("MENSAJE: " + x);
-      },
-      (error) => {
-        this.errors.push(error.error.mensaje);
+    this.medicoService.actualizarMedico(this.objMedico).subscribe({
+      next : result => {
+        this.snackbar.open('MEDICO ACTUALIZADO', 'cerrar', {
+          duration : 300
+        });
+        this.dialogRef.close(true);
+      }, error : err => {
+        this.snackbar.open('error', 'cerrar', {
+          duration : 300
+        });
+        console.log(err);
       }
-    );
+    });
+
+
   }
 }

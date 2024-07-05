@@ -63,12 +63,16 @@ export class EditCategoryComponent implements OnInit {
 
       next : result => {
 
-          this.snackbar.open('Categoria actualizado','cerrar')
+          this.snackbar.open('Categoria actualizado','cerrar', {
+            duration : 300
+          })
           this.dialogRef.close(true)
 
       }, error : error => {
 
-        this.snackbar.open('Error','cerrar')
+        this.snackbar.open('Error','cerrar', {
+          duration : 300
+        })
      
 
       }

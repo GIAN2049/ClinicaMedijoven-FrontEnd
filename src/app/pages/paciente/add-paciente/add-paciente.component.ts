@@ -66,12 +66,17 @@ export class AddPacienteComponent {
 
   registra() {
     this.pacienteService.registrarPacientes(this.objPaciente).subscribe(
-      (x) => {
-        this.snackbar.open('Paciente registrado', 'cerrar');
-        console.log('MENSAJE: ' + x.mensaje);
-      },
-      (error) => {
-        this.errors.push(error.error.mensaje);
+      {
+        next : x => {
+          this.snackbar.open('PACIENTE REGISTRADO', 'cerrar', {
+            duration: 300
+          })
+          this.dialogRef.close(true)
+        }, error : err => {
+          this.snackbar.open('ERROR AL REGISTRAR PACIENTE', 'cerrar', {
+            duration: 300
+          })
+        }
       }
     );
   }

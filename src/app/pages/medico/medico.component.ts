@@ -68,9 +68,13 @@ export default class MedicoComponent {
     this.medicoService.eliminarMedico(medico.id).subscribe({
       next : result => {
         this.getMedicos()
-        this.snackbar.open('Medico eliminado','cerrar')
+        this.snackbar.open('MEDICO ELIMINADO','cerrar', {
+          duration : 300
+        })
       }, error : error => {
-      this.snackbar.open('Error','cerrar')
+      this.snackbar.open('Error','cerrar', {
+          duration : 300
+        })
       }
     })
 

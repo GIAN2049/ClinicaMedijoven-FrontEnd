@@ -132,14 +132,19 @@ export class UpdateRecetaComponent {
   }
 
   actualizar() {
-    console.log('Datos de la historia clinica a registrar:', this.objReceta);
     this.recetaService.edit(this.objReceta).subscribe(
-      (x) => {
-        this.snackbar.open('Receta actualizada', 'cerrar');
-        console.log('MENSAJE: ' + x);
-      },
-      (error) => {
-        this.errors.push(error.error.mensaje);
+      {
+        next : x => {
+          this.snackbar.open('RECETA MEDICA ACTUALIZADA', 'cerrar', {
+            duration : 300
+          })
+          this.dialogRef.close(true)
+        }, error : err => {
+          this.snackbar.open('ERROR AL ACTUALIZAR RECETA MEDICA', 'cerrar', {
+            duration : 300
+          })
+          this.dialogRef.close(true)
+        }
       }
     );
   }

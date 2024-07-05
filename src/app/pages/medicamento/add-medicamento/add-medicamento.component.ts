@@ -73,13 +73,19 @@ export class AddMedicamentoComponent {
 
   registra() {
     this.medicamentoService.newMedicamento(this.objMedicamento).subscribe(
-      (x) => {
-        this.snackbar.open('Medico registrado', 'cerrar');
-        console.log('MENSAJE: ' + x.mensaje);
-      },
-      (error) => {
-        this.errors.push(error.error.mensaje);
+     {
+      next : x => {
+        this.snackbar.open('MEDICAMENTO REGISTRADO', 'cerrar', {
+          duration : 300
+        })
+        this.dialogRef.close(true)
+      }, error : err => {
+        this.snackbar.open('ERRROR AL REGISTRAR MEDICAMENTO', 'cerrar', {
+          duration : 300
+        })
+        this.dialogRef.close(true)
       }
+     }
     );
   }
 

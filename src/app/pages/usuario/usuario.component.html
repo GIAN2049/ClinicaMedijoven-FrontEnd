@@ -11,7 +11,7 @@
             <th>NOMBRE</th>
             <th>APELLIDOS</th>
             <th>DNI</th>
-            <th>CORREO</th>
+            <th>ROL</th>
             <th class="text-center">ACCIONES</th>
         </tr>
     </thead>
@@ -22,7 +22,11 @@
             <td>{{item.nombre}}</td>
             <td>{{item.apellidos}}</td>
             <td>{{item.dni}}</td>
-            <td>{{item.correo}}</td>
+            <td>
+                <span *ngFor="let rol of item.roles; let isLast = last">
+                    {{rol.rol}}<span *ngIf="!isLast">, </span>
+                </span>
+            </td>
             <td class="text-center">
                 <button (click)="updateUsuarios(item)" type="button" class="btn btn-primary btn-sm">Editar</button>
                 <button (click)="deleteUsuarios(item)" type="button" class="btn btn-danger btn-sm mx-2">Eliminar</button>
