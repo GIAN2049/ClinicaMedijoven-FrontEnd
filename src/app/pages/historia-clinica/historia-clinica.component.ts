@@ -28,6 +28,7 @@ export default class HistoriaClinicaComponent {
   constructor(private hclinicaService : HistoriaClinicaService, private snackbar:MatSnackBar, 
     private tokenService: TokenService, private usuarioService : UsuarioService
   ){
+    this.idUsuarioLog = tokenService.getUserId();
   }
 
   ngOnInit(): void {
@@ -96,7 +97,6 @@ export default class HistoriaClinicaComponent {
   isNotPaciente(): boolean {
     const isNotPaciente = this.roles.some(role => {
       if (role.rol !== 'PACIENTE') {
-        console.log(role.rol);
         return true;
       }
       return false;
