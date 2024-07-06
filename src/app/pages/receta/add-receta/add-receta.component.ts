@@ -130,20 +130,15 @@ export class AddRecetaComponent {
   }
 
   registra() {
+    console.log('Datos de la historia clinica a registrar:', this.objReceta);
     this.recetaService.save(this.objReceta).subscribe(
-     {
-      next : x => {
-        this.snackbar.open('RECETA MEDICA REGISTRADA', 'cerrar', {
-          duration : 300
-        })
-        this.dialogRef.close(true)
-      }, error : err => {
-        this.snackbar.open('ERROR AL REGISTRAR RECETA MEDICA', 'cerrar', {
-          duration : 300
-        })
-        this.dialogRef.close(true)
+      (x) => {
+        this.snackbar.open('Receta registrada', 'cerrar');
+        console.log('MENSAJE: ' + x.mensaje);
+      },
+      (error) => {
+        this.errors.push(error.error.mensaje);
       }
-     }
     );
   }
 }

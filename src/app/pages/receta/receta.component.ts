@@ -37,7 +37,6 @@ export default class RecetaComponent {
     this.getRecetas();
     this.getRolesUsuarioId();
     this.isNotPaciente();
-    
   }
 
 
@@ -101,7 +100,6 @@ export default class RecetaComponent {
   isNotPaciente(): boolean {
     const isNotPaciente = this.roles.some(role => {
       if (role.rol !== 'PACIENTE') {
-        console.log(role.rol);
         return true;
       }
       return false;

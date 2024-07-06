@@ -1,0 +1,94 @@
+<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+data-sidebar-position="fixed" data-header-position="fixed">
+<div
+  class="position-relative overflow-hidden text-bg-light min-vh-100 d-flex align-items-center justify-content-center">
+  <div class="d-flex align-items-center justify-content-center w-100">
+    <div class="row justify-content-center w-100">
+      <div class="col-md-8 col-lg-6 col-xxl-3">
+        <div class="card mb-0">
+          <div class="card-body">
+            <h3 class="text-nowrap text-center d-block py-3 w-100">
+                Clinica Medijoven
+            </h3>
+      
+           
+            <form novalidate>
+              <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="w-100" appearance="outline">
+                        <mat-label>NOMBRES</mat-label>
+                        <input [(ngModel)]="objPaciente.usuario.nombre" name="nombre" type="text" matInput>
+                    </mat-form-field>
+                </div>
+    
+                <div class="col-md-6">
+                    <mat-form-field class="w-100" appearance="outline">
+                        <mat-label>APELLIDOS</mat-label>
+                        <input [(ngModel)]="objPaciente.usuario.apellidos" name="apellidos" type="text" matInput>
+                    </mat-form-field>
+                </div>
+    
+                <div class="col-md-6">
+                    <mat-form-field class="w-100" appearance="outline">
+                        <mat-label>DNI</mat-label>
+                        <input [(ngModel)]="objPaciente.usuario.dni" name="dni" type="text" matInput>
+                    </mat-form-field>
+                </div>
+    
+                <div class="col-md-6">
+                    <mat-form-field class="w-100" appearance="outline">
+                        <mat-label>CORREO</mat-label>
+                        <input [(ngModel)]="objPaciente.usuario.correo" name="correo" type="text" matInput>
+                    </mat-form-field>
+                </div>
+    
+                <div class="col-md-6">
+                    <mat-form-field class="w-100" appearance="outline">
+                        <mat-label>NUMERO DE TELEFONO</mat-label>
+                        <input [(ngModel)]="objPaciente.usuario.telefono" name="telefono" type="text" matInput>
+                    </mat-form-field>
+                </div>
+    
+                <div class="col-md-6">
+                    <mat-form-field class="w-100" appearance="outline">
+                        <mat-label>USERNAME</mat-label>
+                        <input [(ngModel)]="objPaciente.usuario.login" name="login" type="text" matInput>
+                    </mat-form-field>
+                </div>
+    
+                <div class="col-md-6">
+                    <mat-form-field class="w-100" appearance="outline">
+                        <mat-label>PASSWORD</mat-label>
+                        <input [(ngModel)]="objPaciente.usuario.password" name="password" type="text" matInput>
+                    </mat-form-field>
+                </div>
+    
+                <div class="col-md-6">
+                    <mat-form-field class="w-100" appearance="outline">
+                        <mat-label>SEXO</mat-label>
+                        <input [(ngModel)]="objPaciente.usuario.sexo" name="sexo" type="text" matInput>
+                    </mat-form-field>
+                </div>
+    
+                <div class="col-md-6">
+                    <mat-form-field class="w-100" appearance="outline">
+                        <mat-label>TIPO SANGRE</mat-label>
+                        <input [(ngModel)]="objPaciente.tipoSangre" name="tipoSangre" type="text" matInput>
+                    </mat-form-field>
+                </div>
+              </div>
+              <div class="mb-4">
+                <button class="btn btn-success rounded-2 btn-block w-100" (click)="registra()">
+                  Registrar
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+

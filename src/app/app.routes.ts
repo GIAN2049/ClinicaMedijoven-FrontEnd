@@ -14,6 +14,11 @@ export  const routes: Routes = [
     component: LoginComponent
   },
   {
+    path : 'create-account',
+    title: 'crear cuenta',
+    loadComponent : () => import('./auth/create-account/create-account.component')
+  },
+  {
     path: 'dashboard',
     loadComponent: () => import('./pages/pages.component'),
     children: [
@@ -64,7 +69,6 @@ export  const routes: Routes = [
         title: 'Receta Medica',
         loadComponent: () => import('./pages/receta/receta.component')
       }
-
     ]
   }
 

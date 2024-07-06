@@ -16,6 +16,10 @@ import { environment } from "../../environments/environment.development";
     getReceta(cod: number) {
       return this.http.get<any>(`${environment.url}/receta/consulta/${cod}`)
     }
+
+    getMedicamentoByIdCategoria(cod:number) {
+      return this.http.get<any>(`${environment.url}/receta/medicamento/${cod}`)
+    }
   
     save(receta: any) {
       return this.http.post<any>(
